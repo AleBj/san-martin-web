@@ -1,0 +1,51 @@
+
+@font-face {
+    font-family: 'clan';
+    src: url('clanblack.eot');
+    src: url('clanblack.eot') format('embedded-opentype'),
+         url('clanblack.woff2') format('woff2'),
+         url('clanblack.woff') format('woff'),
+         url('clanblack.ttf') format('truetype'),
+         url('clanblack.svg#clanblack') format('svg');
+    font-weight: 900;
+}
+@font-face {
+    font-family: 'clan';
+    src: url('clanbold.eot');
+    src: url('clanbold.eot') format('embedded-opentype'),
+         url('clanbold.woff2') format('woff2'),
+         url('clanbold.woff') format('woff'),
+         url('clanbold.ttf') format('truetype'),
+         url('clanbold.svg#clanbold') format('svg');
+    font-weight: 600;
+}
+@font-face {
+    font-family: 'clan';
+    src: url('clanmedium.eot');
+    src: url('clanmedium.eot') format('embedded-opentype'),
+         url('clanmedium.woff2') format('woff2'),
+         url('clanmedium.woff') format('woff'),
+         url('clanmedium.ttf') format('truetype'),
+         url('clanmedium.svg#clanmedium') format('svg');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'clan';
+    src: url('clannews.eot');
+    src: url('clannews.eot') format('embedded-opentype'),
+         url('clannews.woff2') format('woff2'),
+         url('clannews.woff') format('woff'),
+         url('clannews.ttf') format('truetype'),
+         url('clannews.svg#clannews') format('svg');
+    font-weight: 300;
+}
+@font-face {
+    font-family: 'clan';
+    src: url('clanbook.eot');
+    src: url('clanbook.eot') format('embedded-opentype'),
+         url('clanbook.woff2') format('woff2'),
+         url('clanbook.woff') format('woff'),
+         url('clanbook.ttf') format('truetype'),
+         url('clanbook.svg#clanbook') format('svg');
+    font-weight: 200;
+}

@@ -1,0 +1,111 @@
+*{
+  font-smooth: almays;
+  text-shadow: 0px 0px 1px transparent;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+  margin:0;
+  box-sizing: border-box;
+  text-decoration: none;
+  outline: none;
+}
+@-moz-document url-prefix() {
+  body {
+    font-weight: lighter !important;
+  }
+}
+body, html{
+  margin: 0;
+  padding: 0;
+  font-family: $font-sans;
+  color: black;
+  background: $bgBody;
+}
+body.open-menu-overflow{overflow: hidden;}
+#prismic-toolbar-v2{
+  display: none !important;
+}
+a{color:inherit;}
+h1,h2,h3,h4,h5,h6{font-family: $font-serif;}
+h3,h4,h5,h6{font-weight: 600;}
+
+.wrapper{
+  max-width: 1150px;
+  padding: 0 20px;
+  width: 100%;
+  margin:0 auto;
+  @media (max-width:800px){
+    padding: 0 16px;
+  }
+}
+#main{
+  transition: ease-in-out 0.7s;
+  position: relative;
+}
+.page-enter-active, .page-leave-active { transition: opacity .7s; }
+.page-enter, .page-leave-active { opacity: 0; }
+//Filters
+.filters{
+  cursor: pointer;
+  width: 255px;
+  height: 50px;
+  filter: drop-shadow(16px 16px 40px rgba(0, 0, 0, 0.1));
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 25px;
+  background: #fff;
+  z-index: 4;
+  span{font-weight: 600;font-size: 12px;color:$black;padding: 0 28px;}
+  svg{
+    position: absolute;
+    right: 28px;
+  }
+  &-dropDown{
+    position: absolute;
+    top:100%;
+    width: 100%;
+    border-radius: 25px;
+    background: #fff;
+    padding: 28px 0;
+    filter: drop-shadow(16px 16px 40px rgba(0, 0, 0, 0.1));
+    opacity: 0;
+    pointer-events: none;
+    transition: ease-in 0.3s;
+  }
+  &-items{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-weight: 500;
+    font-size: 12px;
+    color:$black;
+    padding: 0 28px;
+    margin:15px 0;
+    transition: ease-in 0.3s;
+    cursor: pointer;
+    &:hover{
+      color: $blue;
+    }
+  }
+  &.open{
+    svg{transform: scale(-1);}
+    .filters-dropDown{
+      transform: translateY(10px);
+      opacity: 1;
+      pointer-events: all;
+      max-height: 550px;
+      overflow: auto;
+    }
+  }
+  @media (max-width:800px) {
+    &-dropDown{padding: 20px 0;}
+    &.open{
+      z-index: 9;
+      .filters-dropDown{
+        max-height: 350px;
+      }
+    }
+  }
+}

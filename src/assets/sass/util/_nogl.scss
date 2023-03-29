@@ -1,0 +1,5 @@
+@mixin nogl {
+  html[data-gl='false'] & {
+    @content;
+  }
+}

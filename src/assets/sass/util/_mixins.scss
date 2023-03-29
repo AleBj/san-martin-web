@@ -1,0 +1,86 @@
+@mixin fade-in {
+  opacity: 0;
+  will-change: opacity;
+  transition: opacity 0.5s ease-in;
+  &[data-scroll-show] {
+    opacity: 1;
+  }
+}
+@mixin fade-in-y {
+  > * {
+    will-change: transform, opacity;
+    opacity: 0;
+    transform: translateY(200px);
+    transition: transform 1s cubic-bezier(0.26, 0.1, 0, 1), opacity 1s ease-in;
+    $delay: 0s;
+    @for $i from 1 to 10 {
+      &:nth-child(#{$i}) {
+        transition-delay: $delay;
+      }
+      $delay: $delay + 0.05;
+    }
+  }
+  &[data-scroll-show] {
+    > * {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+@mixin fade-in-x {
+  opacity: 0;
+  transition: opacity 1s ease-in;
+  > * {
+    will-change: transform, opacity;
+    transform: translateX(200px);
+    transition: transform 1s cubic-bezier(0.26, 0.1, 0, 1);
+    $delay: 0s;
+    @for $i from 1 to 10 {
+      &:nth-child(#{$i}) {
+        transition-delay: $delay;
+      }
+      $delay: $delay + 0.05;
+    }
+  }
+  &[data-scroll-show] {
+    opacity: 1;
+    > * {
+      transform: none;
+    }
+  }
+}
+@mixin safari {
+  html[data-browser='safari'] & {
+    @content;
+  }
+}
+@mixin safari-mobile {
+  html[data-browser='safari-mobile'] & {
+    @content;
+  }
+}
+@mixin edge {
+  html[data-browser='edge'] & {
+    @content;
+  }
+}
+@mixin firefox {
+  html[data-browser='firefox'] & {
+    @content;
+  }
+}
+@mixin ie {
+  html[data-browser='ie'] & {
+    @content;
+  }
+}
+@mixin spanish {
+  html[lang='es'] & {
+    @content;
+  }
+}
+@mixin english {
+  html[lang='en'] & {
+    @content;
+  }
+}

@@ -1,0 +1,16 @@
+@mixin importFont($fontname, $filename, $weight) {
+  @font-face {
+    font-family: $fontname; 
+    font-display: swap;
+    src: url('~static/fonts/#{$filename}.woff') format('woff'), 
+    url('~static/fonts/#{$filename}.woff2') format('woff2'); 
+    font-weight: $weight;
+    font-style: normal;
+  }
+}
+
+@include importFont('clan', 'clanbook', 200);
+@include importFont('clan', 'clannews', 400);
+@include importFont('clan', 'clanmedium', 500);
+@include importFont('clan', 'clanbold', 600);
+@include importFont('clan', 'clanblack', 900);
