@@ -2,32 +2,8 @@
     <div class="swiper">
       <div class="swiper-wrapper">
         <div  v-for="(item,index) in items" :key="index" :style="item.style" class="swiper-slide">
-          
-          <a v-if="item.video_slider && item.video_slider.url" :href="(item.link.url) ? item.link.url : `/`" :class="$style.video">
-            <VideoBackground :video="item.video_slider.url" :videoMob="item.video_slider_mobile.url" />
-          </a>
-          <a v-if="item.link.link_type == 'Web' || item.link.link_type == 'Media'" :href="(item.link.url) ? item.link.url : `/`" target="_blank">      
-  
-            <picture>
-              <source :srcset="item.imagen_mobile.url" media="(max-width: 768px)">
-              <source :srcset="item.imagen_desktop.url">
-              <prismic-image :field="item.imagen_desktop"/>
-            </picture>
-          </a>
-          <nuxt-link v-else-if="item.link.id" :to="(item.link.type == 'sitio') ? `/${item.link.uid}` :  (item.link.type == 'interna_comunidad') ? `/comunidades/interna/${item.link.uid}` : `/${item.link.type}/${item.link.uid}`">          
-            <picture>
-              <source :srcset="item.imagen_mobile.url" media="(max-width: 768px)">
-              <source :srcset="item.imagen_desktop.url">
-              <prismic-image :field="item.imagen_desktop"/>
-            </picture>
-          </nuxt-link>
-          <a v-else>
-            <picture>
-              <source :srcset="item.imagen_mobile.url" media="(max-width: 768px)">
-              <source :srcset="item.imagen_desktop.url">
-              <prismic-image :field="item.imagen_desktop"/>
-            </picture>
-          </a>
+
+          <prismic-image :field="item.imagen_desktop"/>
   
         </div>
       </div>
@@ -47,7 +23,7 @@
   import { Swiper, Navigation, Pagination, Autoplay } from 'swiper'
   import 'swiper/swiper-bundle.min.css'
   export default {
-    name: 'Carrusel',
+    name: 'CarruselFotos',
     props: {    
       items: VueTypes.array.def()
     },  
@@ -92,17 +68,6 @@
     }
   }
   </script>
-<style lang="scss" module>
-.video{
-  width: 1110px;
-  height: 480px;
-  position: relative;
-  @media (max-width:800px) {
-     width: 350px;
-     height: 360px; 
-  }
-}
-</style>
   
   <style scoped lang="scss">
   .swiper {
@@ -117,18 +82,18 @@
     align-items: center;
     display: flex;
     justify-content: center;
-    max-width:1100px;
-    border-radius: 30px;
+    max-width:100vw;
     overflow: hidden;  
-    img{display: block;}
+    img{
+      display: block;
+      object-fit: cover;
+      width: 100%;
+      height: 90vh;
+      min-height: 700px;
+      aspect-ratio: 16/9;
+    }
     @media (max-width:800px) {
       border-radius: 0px;
-      & img{display: block;width: calc(100vw - 32px);object-fit: cover;}
-      & a{
-        display: block;
-        overflow: hidden;
-        border-radius: 20px;
-      }
     }
   }
   .swiper-button-next{
@@ -147,6 +112,7 @@
       left: 50px;
       @media (max-width:800px) {display: none;}
   }
+  .swiper-pagination{bottom:40px}
   .swiper-button-prev:after,
   .swiper-button-next:after{
     font-size: 20px;

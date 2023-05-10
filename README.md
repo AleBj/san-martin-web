@@ -1,5 +1,5 @@
-# sanmartin 2021 Website // https://sanmartin-web.netlify.app/
-# https://github.com/humanticdigital/san-martin-web
+# sanmartin 2021 Website // https://sanmartin.gov.ar
+# https://github.com/AleBj/san-martin-web
 
 ## Build Setup
 

@@ -169,7 +169,7 @@ export default {
     flex-direction: column;
     @media (max-width:800px) {      
       justify-content: flex-end;
-      background-color: rgba($color: $black, $alpha: .6);
+      //background-color: rgba($color: $black, $alpha: .6);
     }
     &.centered{
       align-items: center;
@@ -182,7 +182,13 @@ export default {
       color: $grey;
       max-width: 450px;
     }
-    &.txtWhite{ h2,p{color:#fff;}}
+    &.txtWhite{ 
+      @media (max-width:800px) {      
+        justify-content: flex-end;
+        background-color: rgba($color: $black, $alpha: .6);
+      }
+      h2,p{color:#fff;}
+    }
   }
   h2{max-width: 540px;}
   .buttonDown{
