@@ -16,7 +16,7 @@
       :key="sliceIndex"
       :data-slice-name="slice.name"
       v-bind="slice.data"
-      id="slug"
+      :id="$prismic.asText(slice.data.idAncla)"
    />
   </section>
 </div>
@@ -72,7 +72,7 @@ export default {
       
       const data = res.data
       this.slices = data.body.map(this.prepareData)
-      //console.log(this.slices)
+      console.log(this.slices)
       
       this.colorPrimary = this.madre.data.color_primario
       this.colorSecundary = this.madre.data.color_secundario
@@ -99,7 +99,6 @@ export default {
   mounted() {
     this.domReady = true
     
-    ////console.log(this.body)
   },
   computed:{
     cssProps(){
