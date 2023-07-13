@@ -16,6 +16,7 @@
       :key="sliceIndex"
       :data-slice-name="slice.name"
       v-bind="slice.data"
+      id="slug"
    />
   </section>
 </div>

@@ -1,8 +1,8 @@
 <template lang="">
   <div :class="[$style.card, $style[size]]" :style="{backgroundImage:`url(${items.data.thumb_card.url})`,backgroundColor:color}">
     <nuxt-link :to="`/comunidades/interna/${items.uid}`">
-      <p>{{ $prismic.asText(items.data.titulo) }}</p>
-      <h3>{{ $prismic.asText(items.data.descripcion) }}</h3>
+      <h3>{{ $prismic.asText(items.data.titulo) }}</h3>
+      <p>{{ $prismic.asText(items.data.descripcion) }}</p>
       <span>
         SEGUIR LEYENDO
         <svg width="18" height="9" viewBox="0 0 18 9" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -64,7 +64,7 @@ export default {
     justify-content: flex-end;
     color:#FFF;
     h3{font-size: 22px;margin: 10px 0 20px;}
-    p{font-size: 12px;line-height: 1.3;font-weight: 600;margin-bottom: 16px;text-transform: uppercase;}
+    p{font-size: 16px;line-height: 1.5;font-weight: 400;margin-bottom: 26px;}
     span{
       font-size: 12px;
       font-weight: 600;
