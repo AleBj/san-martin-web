@@ -14,6 +14,7 @@
       :key="sliceIndex"
       :data-slice-name="slice.name"
       v-bind="slice.data"
+      :id="$prismic.asText(slice.data.idAncla)"
     />
 
   </section>
@@ -103,7 +104,12 @@ export default {
   },
   mounted() {
     this.domReady = true
-    //console.log(this.programa)
+    if(location.hash){
+      setTimeout(function(){
+        const elem = document.getElementById(`${location.hash.slice(1)}`)
+        elem.scrollIntoView();
+      },500)
+    }
   },
   computed:{
     cssProps(){

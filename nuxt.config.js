@@ -132,7 +132,7 @@ export default {
     '@nuxtjs/google-analytics'
   ],
   googleAnalytics: {
-    id: 'UA-75299426-1', // Use as fallback if no runtime config is provided
+    id: 'G-7MHS5RDC0D', // Use as fallback if no runtime config is provided
   },
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [

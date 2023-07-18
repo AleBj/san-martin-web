@@ -75,8 +75,17 @@ export default {
           }>${childs}</li>`
           break
         case Elements.hyperlink:
-          if(element.data.link_type == "Media")
-          return `<a href="${element.data.url}" class="sin" target="_blank">${childs}</a>`
+          if(element.data.link_type == "Media"){
+            return `<a href="${element.data.url}" class="sin" target="_blank">${childs}</a>`
+          }else if(element.data.link_type == "Document"){
+            if(element.data.type == 'sitio'){
+              return `<a href="/${element.data.uid}" class="sin" target="_blank">${childs}</a>`
+            }else if(element.data.type == 'interna_comunidad'){
+              return `<a href="/comunidades/interna/${element.data.uid}" class="sin" target="_blank">${childs}</a>`
+            }else{
+              return `<a href="${element.data.type}/${element.data.uid}" class="sin" target="_blank">${childs}</a>`
+            }
+          }
           break
         default:
           return null

@@ -98,7 +98,12 @@ export default {
   },
   mounted() {
     this.domReady = true
-    
+    if(location.hash){
+      setTimeout(function(){
+        const elem = document.getElementById(`${location.hash.slice(1)}`)
+        elem.scrollIntoView();
+      },500)
+    }    
   },
   computed:{
     cssProps(){
