@@ -1,6 +1,6 @@
 <template>
 <div :style="cssProps">
-  <section :class="[$style.heroProgramas]" :style="`background-image:url(${bgImage}?fit=clip&w=1500)`">
+  <section v-if="programa.header_sitios" :class="[$style.heroProgramas]" :style="`background-image:url(${bgImage}?fit=clip&w=1500)`">
     <div :class="[`wrapper`, programa.texto && $style.txtWhite, programa.alineacion && $style.centered]">
       <Title :text="programa.titulo" :size="`int`" />
       <RichText :text="programa.descripcion" />
