@@ -116,8 +116,11 @@ export default {
   }, 
   mounted() {
    this.isMobile = window.innerWidth < 800;
-   console.log(Date.parse(this.currentDate))
-   console.log(Date.parse(this.items[0].fecha_hora))
+    this.items = this.items.filter(i => this.dateParse(i.fecha_hora) > this.dateParse(this.currentDate))
+
+  //  console.log(Date.parse(this.currentDate))
+  //  console.log(Date.parse(this.items[0].fecha_hora))
+  //  console.log(this.items)
   },
   watch: {
     items(v) {
