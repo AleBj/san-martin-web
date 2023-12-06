@@ -18,10 +18,8 @@
   
   <script>
   import VueTypes from 'vue-types'
-  // import Swiper JS
-  // add or remove unused modules
-  import { Swiper, Navigation, Pagination, Autoplay } from 'swiper'
-  import 'swiper/swiper-bundle.min.css'
+  import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+
   export default {
     name: 'CarruselFotos',
     props: {    
@@ -33,10 +31,10 @@
       // configure Swiper to use modules. The modules were tested with SwiperJS v6.8.4 with NuxtJS v2.15.7
       // previously it was before export default. Moved here for performance issues. Move back in case of problems.
       // add or remove unused modules
-      Swiper.use([Navigation, Pagination, Autoplay])
+      
       
       // init Swiper:
-      /* eslint-disable no-unused-vars */
+     
       const swiper = new Swiper('.swiper', {
         // Optional parameters
         // @see https://swiperjs.com/swiper-api#parameters
@@ -65,6 +63,7 @@
         spaceBetween: 30
       })
       console.log(this.items)
+     
     }
   }
   </script>
@@ -103,6 +102,20 @@
       border-radius: 100%;
       right: 50px;
       @media (max-width:800px) {display: none;}
+      &:after{
+        position: relative;
+        z-index: 1;
+        content: "";
+        width: 12px;
+        height: 12px;
+        border-left: 1.5px solid #007aff;
+        border-top: 1.5px solid #007aff;
+        border-radius: 1px;
+        transform: rotate(135deg);
+        display: block;
+        margin: auto;
+        left: -3px;
+      }
   }
   .swiper-button-prev{
       background-color: #FFF;
@@ -111,8 +124,30 @@
       border-radius: 100%;
       left: 50px;
       @media (max-width:800px) {display: none;}
+      &:after{
+        position: relative;
+        z-index: 1;
+        content: "";
+        width: 12px;
+        height: 12px;
+        border-left: 1.5px solid #007aff;
+        border-top: 1.5px solid #007aff;
+        border-radius: 1px;
+        transform: rotate(-45deg);
+        display: block;
+        margin: auto;
+        left: 3px;
+      }
   }
   .swiper-pagination{bottom:40px}
+  .swiper-pagination {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    gap:5px;
+  }
   .swiper-button-prev:after,
   .swiper-button-next:after{
     font-size: 20px;

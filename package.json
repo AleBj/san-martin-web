@@ -26,6 +26,7 @@
     "nuxt": "^2.14.6",
     "nuxt-sm": "^0.1.6",
     "prismic-javascript": "^3.0.2",
+    "swiper": "^10.2.0",
     "vue-essential-slices": "^0.2.0",
     "vue-meta": "^2.4.0",
     "vue-slicezone": "^0.0.29",

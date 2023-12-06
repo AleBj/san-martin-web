@@ -42,10 +42,11 @@
   
   <script>
   import VueTypes from 'vue-types'
-  // import Swiper JS
-  // add or remove unused modules
-  import { Swiper, Navigation, Pagination, Autoplay } from 'swiper'
-  import 'swiper/swiper-bundle.min.css'
+
+  import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+  
+
+  import Swiper from 'swiper'
   export default {
     name: 'Carrusel',
     props: {    
@@ -54,41 +55,30 @@
     components:{
     },
     mounted() {
-      // configure Swiper to use modules. The modules were tested with SwiperJS v6.8.4 with NuxtJS v2.15.7
-      // previously it was before export default. Moved here for performance issues. Move back in case of problems.
-      // add or remove unused modules
-      Swiper.use([Navigation, Pagination, Autoplay])
       
-      // init Swiper:
-      /* eslint-disable no-unused-vars */
       const swiper = new Swiper('.swiper', {
-        // Optional parameters
-        // @see https://swiperjs.com/swiper-api#parameters
         direction: 'horizontal',
         loop: true,
-        // remove unused modules if needed
         modules: [Navigation, Pagination, Autoplay],
-        // Pagination if needed
         pagination: {
           el: '.swiper-pagination',
           type: 'bullets',
           clickable: true
         },
-        // Autoplay if needed
         autoplay: {
-          delay: 7000
+          delay: 7000,
+          disableOnInteraction: false,
         },
-        // Navigation arrows if needed
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
         }
-        // Configure other options. Not tested
         ,slidesPerView: 'auto',
         centeredSlides: true,
         spaceBetween: 30
       })
       console.log(this.items)
+    
     }
   }
   </script>
@@ -131,6 +121,14 @@
       }
     }
   }
+  .swiper-pagination {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    gap:5px;
+  }
   .swiper-button-next{
       background-color: #FFF;
       width: 60px;
@@ -138,6 +136,20 @@
       border-radius: 100%;
       right: 50px;
       @media (max-width:800px) {display: none;}
+      &:after{
+        position: relative;
+        z-index: 1;
+        content: "";
+        width: 12px;
+        height: 12px;
+        border-left: 1.5px solid #007aff;
+        border-top: 1.5px solid #007aff;
+        border-radius: 1px;
+        transform: rotate(135deg);
+        display: block;
+        margin: auto;
+        left: -3px;
+      }
   }
   .swiper-button-prev{
       background-color: #FFF;
@@ -146,6 +158,20 @@
       border-radius: 100%;
       left: 50px;
       @media (max-width:800px) {display: none;}
+      &:after{
+        position: relative;
+        z-index: 1;
+        content: "";
+        width: 12px;
+        height: 12px;
+        border-left: 1.5px solid #007aff;
+        border-top: 1.5px solid #007aff;
+        border-radius: 1px;
+        transform: rotate(-45deg);
+        display: block;
+        margin: auto;
+        left: 3px;
+      }
   }
   .swiper-button-prev:after,
   .swiper-button-next:after{
