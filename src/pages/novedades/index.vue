@@ -14,12 +14,11 @@
       </div>
     </div>
     <div :class="[`wrapper`,$style.newsContent]">
-
+      {{ news.lenght }}
       <CardsNews v-for="(item, index) in newsFilter" :key="index" :items="item" :type="`news`" />
     </div>
   </div>
 </template>
-
 <script>
 import RichText from "../../components/RichText.vue";
 import Title from "../../components/Title.vue";
@@ -47,16 +46,30 @@ export default {
       options.ref = masterRef.ref
     }
 
-    const news = await this.$prismic.api.query(this.$prismic.predicates.at('document.type', 'novedades'), { pageSize : 200, orderings: '[document.first_publication_date desc]' }).then( response => {
-      return response.results
-    });
+    // const news = await this.$prismic.api.query(this.$prismic.predicates.at('document.type', 'novedades'), { pageSize : 200, orderings: '[document.first_publication_date desc]' }).then( response => {
+    //   return response.results
+    // });
+
+    let pages = await this.$prismic.api.query(
+      this.$prismic.predicates.at('document.type','novedades'),
+      { pageSize : 100}
+    ).then( r => r.total_pages)
+
+    let arrNews = []
+    for (let n = 1; n <= pages; n++) {     
+      let m = await this.$prismic.api.query(this.$prismic.predicates.at('document.type', 'novedades'), { pageSize : 100, page: n }).then( response => {
+        return arrNews = arrNews.concat(response.results)
+      });
+    }
+    
+    this.news = arrNews
+    console.log(this.news.length)
 
     const resCats = await this.$prismic.api.query(this.$prismic.predicates.at('document.type', 'tag_news'), { pageSize : 200 }).then( response => {
       return response.results
     });
     this.categories = resCats.sort(this.OrdenarPorNombre)
 
-    this.news = news
 
     this.newsFilter = this.news
 

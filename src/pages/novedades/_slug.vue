@@ -1,5 +1,24 @@
 <template>
   <div :class="$style.page">
+   
+    <Html>
+      <Head>
+        <Title>{{ meta.title }}</Title>
+        <Meta name="description" :content="meta.description" />
+        <Meta property="og:title" :content="meta.title" />
+        <Meta property="og:description" :content="meta.description" />
+        <Meta property="og:image" :content="`${meta.image.url}&w=1920`" />
+        <Meta property="og:type" content="website" />
+        <Meta property="og:url" :content="`https://sanmartin.gob.ar`" />
+        <Meta property="twitter:card" content="summary_large_image" />
+        <Meta property="twitter:title" :content="meta.title" />
+        <Meta property="twitter:description" :content="meta.description" />
+        <Meta property="twitter:image" :content="`${meta.image.url}&w=1920`" />
+        <Meta property="twitter:url" :content="`https://sanmartin.gob.ar`" />
+      </Head>
+    </Html>
+
+
     <div :class="$style.content">
       <small v-if="category">{{$prismic.asText(category.data.name)}}</small>
       <Title :text="datos.title" :size="`h1`" />
