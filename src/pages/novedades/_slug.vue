@@ -7,13 +7,13 @@
         <Meta name="description" :content="meta.description" />
         <Meta property="og:title" :content="meta.title" />
         <Meta property="og:description" :content="meta.description" />
-        <Meta property="og:image" :content="`${meta.image.url}&w=1920`" />
+        <Meta property="og:image" :content="`${datos.image.url}?fit=clip&w=1400`" />
         <Meta property="og:type" content="website" />
         <Meta property="og:url" :content="`https://sanmartin.gob.ar`" />
         <Meta property="twitter:card" content="summary_large_image" />
         <Meta property="twitter:title" :content="meta.title" />
         <Meta property="twitter:description" :content="meta.description" />
-        <Meta property="twitter:image" :content="`${meta.image.url}&w=1920`" />
+        <Meta property="twitter:image" :content="`${datos.image.url}?fit=clip&w=1400`" />
         <Meta property="twitter:url" :content="`https://sanmartin.gob.ar`" />
       </Head>
     </Html>

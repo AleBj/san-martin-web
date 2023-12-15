@@ -63,7 +63,7 @@ export default {
     }
     
     this.news = arrNews
-    console.log(this.news.length)
+    console.log('cuantos?:',this.news.length)
 
     const resCats = await this.$prismic.api.query(this.$prismic.predicates.at('document.type', 'tag_news'), { pageSize : 200 }).then( response => {
       return response.results

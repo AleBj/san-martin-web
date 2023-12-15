@@ -46,7 +46,9 @@
         @setPosition="handleSetPosition"
         @swipe="handleSwipe"
         @lazyLoaded="handleLazyLoaded"
-        @lazyLoadError="handleLazyLoadError">
+        @lazyLoadError="handleLazyLoadError"
+      >
+
       <div v-for="(c, index) in items" :key="index" :style="`background-image:url(${c.imagen_item.url}?fit=clip&w=700)`" :class="[$style.card, data.primary.tamano_agenda && $style.agendaSmall, (dateParse(c.fecha_hora) < dateParse(currentDate) && $style.pasada)]"> 
         <figure v-if="isMobile" :style="`background-image:url(${c.imagen_item.url}?fit=clip&w=700)`"></figure>
         <div :class="$style.date" v-if="c.lugar_agenda && c.lugar_agenda.length > 0">
@@ -72,6 +74,7 @@
           </div>
         </div>
       </div>
+      
       </slick>
 
     </div>
@@ -116,15 +119,20 @@ export default {
   }, 
   mounted() {
    this.isMobile = window.innerWidth < 800;
-    this.items = this.items.filter(i => this.dateParse(i.fecha_hora) > this.dateParse(this.currentDate))
 
-  //  console.log(Date.parse(this.currentDate))
-  //  console.log(Date.parse(this.items[0].fecha_hora))
-  //  console.log(this.items)
+   //this.items = this.items.filter(i => this.dateParse(i.fecha_hora) > this.dateParse(this.currentDate))
+
+    //  console.log(Date.parse(this.currentDate))
+    //  console.log(Date.parse(this.items[0].fecha_hora))
+
+    console.log('cuantos?:',this.itemsn)
+    console.log('cuantos?:',this.items)
   },
   watch: {
     items(v) {
       this.items = v  
+      this.handleInit()
+      console.log('cuantos?:',this.items)
     }
   },
   methods:{
