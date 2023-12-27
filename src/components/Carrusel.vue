@@ -177,4 +177,5 @@
   .swiper-button-next:after{
     font-size: 20px;
   }
+
   </style>

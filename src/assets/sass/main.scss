@@ -155,4 +155,8 @@ h3,h4,h5,h6{font-weight: 600;}
   border-radius: 50%;
   background: #000;
   opacity: .2;
+  &-active{
+    background: $blue;
+    opacity: 1;
+  }
 }

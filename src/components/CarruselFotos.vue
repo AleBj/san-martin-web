@@ -147,6 +147,9 @@
     justify-content: center;
     padding: 10px 0;
     gap:5px;
+    .swiper-pagination-bullet-active{
+      background: #007aff;
+    }
   }
   .swiper-button-prev:after,
   .swiper-button-next:after{

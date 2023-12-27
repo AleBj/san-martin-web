@@ -124,8 +124,6 @@ export default {
 
     //  console.log(Date.parse(this.currentDate))
     //  console.log(Date.parse(this.items[0].fecha_hora))
-
-    console.log('cuantos?:',this.itemsn)
     console.log('cuantos?:',this.items)
   },
   watch: {
