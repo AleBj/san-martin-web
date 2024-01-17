@@ -1,5 +1,25 @@
 <template>
   <div class="page" :class="$style.page">   
+
+    <Html>
+    <Head>
+      <Title>{{ meta && meta.title }} :: SM</Title>
+      <Meta name="description" :content="meta && meta.description"/>
+      <Meta property="og:title" :content="meta && meta.title"/>
+      <Meta property="og:description" :content="meta && meta.description"/>
+      <Meta property="og:image" :content="`${meta && meta.image}&w=1920`"/>
+      <Meta property="og:type" content="website"/>
+      <Meta property="og:url" :content="`sanmartin.gov.ar`"/>
+      <Meta property="twitter:card" content="summary_large_image"/>
+      <Meta property="twitter:title" :content="meta && meta.title"/>
+      <Meta property="twitter:description" :content="meta && meta.description"/>
+      <Meta property="twitter:image" :content="`${meta && meta.image}&w=1920`"/>
+      <Meta property="twitter:url" :content="`sanmartin.gov.ar`"/>
+      <Meta property="twitter:site" content="@sanmartingob"/>
+      <Meta property="twitter:creator" content="@sanmartingob"/>
+    </Head>
+    </Html>
+
     <component
       :is="slice.name"
       v-for="(slice, sliceIndex) in slices"
@@ -24,7 +44,7 @@ export default {
   components:{
     NewsHome,
     ComunidadesHome
-},
+  },
   mixins: [PageMixin],
   async fetch() {
     let { ref } = this.$route.query
@@ -96,7 +116,7 @@ export default {
   },
   head() {
     return {
-      title: this.meta.title,
+      title: this.meta.title + ' -- SM',
       meta: [
         {
           hid: 'description',

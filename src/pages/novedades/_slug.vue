@@ -1,5 +1,24 @@
 <template>
   <div :class="$style.page">
+    <Html>
+    <Head>
+      <Title>{{ res && $prismic.asText(res.data.title) }}</Title>
+      <Meta name="description" :content="res && res.data.bajada"/>
+      <Meta property="og:title" :content="res && res.data.title"/>
+      <Meta property="og:description" :content="res && res.data.bajada"/>
+      <Meta property="og:image" :content="`${res && res.data.image.url}&w=1920`"/>
+      <Meta property="og:type" content="website"/>
+      <Meta property="og:url" :content="`sanmartin.gov.ar`"/>
+      <Meta property="twitter:card" content="summary_large_image"/>
+      <Meta property="twitter:title" :content="res && res.data.title"/>
+      <Meta property="twitter:description" :content="res && res.data.bajada"/>
+      <Meta property="twitter:image" :content="`${res && res.data.image.url}&w=1920`"/>
+      <Meta property="twitter:url" :content="`sanmartin.gov.ar`"/>
+      <Meta property="twitter:site" content="@UNmigration"/>
+      <Meta property="twitter:creator" content="@UNmigration"/>
+    </Head>
+    </Html>
+  
     <div :class="$style.content">
       <small v-if="category">{{$prismic.asText(category.data.name)}}</small>
       <Title :text="datos.title" :size="`h1`" />
@@ -75,8 +94,17 @@ export default {
     RichText,
     RelatedNews
   },
+  async asyncData({route,$prismic}){
+    const slug = route.params.slug
+    const res = await $prismic.api.getByUID('novedades', slug)
+    
+    if (res) {
+      return { res }
+    } else {
+      error({ statusCode: 404, message: 'Page not found' })
+    }
+  },
   async fetch() {
-
     const slug = this.$route.params.slug
     const res = await this.$prismic.api.getByUID('novedades', slug)
     const optionsDate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -133,15 +161,18 @@ export default {
           name: 'description',
           content: this.$prismic.asText(this.datos.bajada),
         },
+        { name: 'twitter:card', content: 'summary_large_image' },
         {
-          hid: 'twitter:title',
           name: 'twitter:title',
           content: this.$prismic.asText(this.datos.title),
         },
         {
-          hid: 'twitter:description',
           name: 'twitter:description',
           content: this.$prismic.asText(this.datos.bajada),
+        },
+        {
+          name: 'twitter:image',
+          content: this.datos.image && `${this.datos.image.url}?fit=clip&w=1200&h=600`,
         },
         {
           hid: 'og:title',

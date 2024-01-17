@@ -79,6 +79,31 @@
 
 export default {
   name: 'Profiles',
+  head: {
+    title: "Municipalidad de San Martin :: Trámites",
+    meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Son todos los trámites que ofrece gestionar la Municipalidad de San Martin'
+        },
+        {
+          hid: "og:title",
+          property: "og:title",
+          content: "Municipalidad de San Martin :: Trámites",
+        },
+        {
+          hid: "og:description",
+          property: "og:description",
+          content: "Son todos los trámites que ofrece gestionar la Municipalidad de San Martin",
+        },
+        {
+          hid: "og:image",
+          property: "og:image",
+          content: "/share-tramites.png",
+        },
+      ],
+    },
   async fetch() {
     let { ref } = this.$route.query
     const options = {}

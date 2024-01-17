@@ -1,3 +1,4 @@
+
 <template>
     <div class="swiper">
       <div class="swiper-wrapper">
@@ -47,6 +48,7 @@
   
 
   import Swiper from 'swiper'
+
   export default {
     name: 'Carrusel',
     props: {    
@@ -72,12 +74,12 @@
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
-        }
-        ,slidesPerView: 'auto',
+        },
+        slidesPerView: 'auto',
         centeredSlides: true,
         spaceBetween: 30
       })
-      console.log(this.items)
+      //console.log(this.items)
     
     }
   }
@@ -135,7 +137,12 @@
       height: 60px;
       border-radius: 100%;
       right: 50px;
-      @media (max-width:800px) {display: none;}
+      @media (max-width:800px) {
+        right:0;
+        width: 40px;
+        height: 40px;
+        box-shadow: 0 0 20px rgba($blue,.3);
+      }
       &:after{
         position: relative;
         z-index: 1;
@@ -157,7 +164,12 @@
       height: 60px;
       border-radius: 100%;
       left: 50px;
-      @media (max-width:800px) {display: none;}
+      @media (max-width:800px) {
+        left:0;
+        width: 40px;
+        height: 40px;
+        box-shadow: 0 0 20px rgba($blue,.3);
+      }
       &:after{
         position: relative;
         z-index: 1;
