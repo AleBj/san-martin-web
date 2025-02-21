@@ -21,6 +21,10 @@
   import VueTypes from 'vue-types'
   import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
+
+  import Swiper from 'swiper'
+
+  
   export default {
     name: 'CarruselFotos',
     props: {    
