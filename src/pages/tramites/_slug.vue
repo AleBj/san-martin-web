@@ -48,6 +48,11 @@
 
         <Title :text="tramite.nombre" :size="`h3`" />
         <RichText :text="tramite.descripcion" />
+        <div v-if="isProv == true" :class="$style.checkTramite">
+          <input type="checkbox" v-model="checkTramite" name="checktramite">
+          <label for="checktramite"> He descargado y leído el <a href="https://sitiosale.cdn.prismic.io/sitiosale/aEBoOLh8WN-LVmnl_C%C3%B3digode%C3%A9ticayconducta.pdf" target="_blank"> Código de Ética </a> y Conducta y las <a href="https://sitiosale.cdn.prismic.io/sitiosale/aDneridWJ-7kSv17_Pol%C3%ADticaAntisoborno-T02.pdf" target="_blank"> Políticas Antisoborno </a></label>
+          <div v-if="checkTramite == false" :class="$style.disabled"></div>
+        </div>
         <Button :cta="`Iniciar Tramite`" 
         :link="tramite.iniciar_tramite_link.url"  
         :externalLink="true" :target="`_blank`"
@@ -86,6 +91,7 @@ export default {
     this.slug = slug
     const res = await this.$prismic.api.getByUID('tramites',slug)
 
+    this.isProv = this.slug == 'san-martin-compra-inscripcion-proveedores' ? true : false
     
     if (res && res.data) {      
       this.tramite = res.data
@@ -133,6 +139,8 @@ export default {
       related:[],
       category:'',
       slug: '',
+      isProv: false,
+      checkTramite: false
     }
   },
   mounted() {
@@ -297,6 +305,29 @@ export default {
       & > div{
         margin-top: 30px;
       }      
+      .checkTramite{
+        display: flex;
+        align-items: flex-start;
+        position: relative;
+        gap:10px;
+        font-size: 12px;
+        line-height: 1.2;
+        input{margin-top: 2px;}
+        a{text-decoration: underline;font-weight: bold;}
+        .disabled{
+          position: absolute;
+          z-index: 99;
+          background: white;
+          opacity: .3;
+          width: 100%;
+          height: 100px;
+          top: 100%;left: 0;
+
+          @media (max-width:800px) {
+            top: 0%;left: 100%;
+          }
+        }
+      }
       @media (max-width:800px) {
         position: fixed;
         transform: translateX(0px);
