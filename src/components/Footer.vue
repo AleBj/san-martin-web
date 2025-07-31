@@ -4,7 +4,7 @@
       <div class="wrapper">
         
         <div :class="$style.copy">
-          <small>Newsletter</small>
+          <!-- <small>Newsletter</small> -->
           <h3>Registrate y recibí semanalmente novededades del Municipio de San Martín.</h3>
         </div>
         <form :class="$style.input" @submit="checkForm" method="post">
@@ -120,8 +120,8 @@
               </svg>
             </a>
             <a href="https://twitter.com/sanmartingob" target="_blank" :class="$style.rrss_twitter">
-              <svg width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.2896 4.35443C19.3032 4.54017 19.3032 4.72486 19.3032 4.9106C19.3141 6.51181 19.0068 8.09924 18.3991 9.58067C17.7913 11.0621 16.8953 12.408 15.763 13.5402C14.6307 14.6724 13.2847 15.5683 11.8032 16.176C10.3217 16.7836 8.73429 17.0907 7.13308 17.0796C4.80463 17.0856 2.524 16.4189 0.56543 15.1596C0.908445 15.1975 1.25338 15.2153 1.59847 15.2129C3.52359 15.2178 5.39425 14.5742 6.90873 13.3857C6.01608 13.3696 5.15075 13.075 4.43367 12.5432C3.71658 12.0113 3.18356 11.2687 2.90908 10.4191C3.17627 10.4613 3.44625 10.4832 3.71673 10.4849C4.09668 10.4836 4.47497 10.4346 4.84265 10.3388C3.87425 10.1429 3.00352 9.61781 2.3783 8.85279C1.75308 8.08776 1.41191 7.12992 1.41273 6.14191V6.08869C2.0055 6.41938 2.66803 6.6053 3.3463 6.6313C2.4392 6.0252 1.79753 5.09584 1.55224 4.03281C1.30694 2.96979 1.47649 1.85323 2.0263 0.910949C3.10013 2.23297 4.43975 3.3146 5.95835 4.08577C7.47696 4.85693 9.14064 5.30041 10.8416 5.38747C10.7735 5.06528 10.7385 4.73696 10.7373 4.40764C10.7375 3.54945 10.9958 2.71116 11.4786 2.00168C11.9615 1.2922 12.6465 0.744333 13.4448 0.429258C14.2431 0.114183 15.1176 0.0464642 15.9549 0.234899C16.7922 0.423334 17.5534 0.859213 18.1397 1.48591C19.097 1.30121 20.015 0.951674 20.8527 0.452862C20.5343 1.44098 19.8665 2.27907 18.9745 2.81008C19.8233 2.71167 20.6526 2.48692 21.435 2.1433C20.8493 2.99576 20.124 3.7433 19.2896 4.35443Z" fill="#282828"/>
+              <svg width="22" viewBox="0 0 300 271" xmlns="http://www.w3.org/2000/svg">
+                <path d="m236 0h46l-101 115 118 156h-92.6l-72.5-94.8-83 94.8h-46l107-123-113-148h94.9l65.5 86.6zm-16.1 244h25.5l-165-218h-27.4z"/>
               </svg>
             </a>
             <a href="https://www.tiktok.com/@sanmartingob" target="_blank" :class="$style.rrss_youtube">
@@ -137,11 +137,12 @@
     </div>  
     <div :class="$style.greyStrip">
       <div class="wrapper">
-        <small>© Copyright Municipalidad de San Martín 2022</small>
+        <small>© Copyright Municipalidad de San Martín {{currentYear }}</small>
 
         <a href="https://freela.studio" target="_blank" :class="$style.thrueno">
           Desarrollado por 
-          <svg width="120" viewBox="0 0 659 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <strong>Freela Studio</strong>
+          <!-- <svg width="120" viewBox="0 0 659 90" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g clip-path="url(#clip0_1111_6363)">
           <path d="M380.59 37.44C367.99 34.32 358.75 32.76 358.75 21.36C358.75 14.28 365.23 9.6 377.35 9.6C390.91 9.6 397.39 15.6 398.95 27.12H409.75C408.31 9.36 395.59 0 377.35 0C359.11 0 347.95 9 347.95 22.56C347.95 39.24 363.31 43.68 376.15 46.68C395.35 51.12 401.71 53.28 401.71 65.04C401.71 72.72 396.43 79.56 381.55 79.56C363.55 79.56 356.35 70.44 355.15 58.68H344.35C345.55 78.36 361.27 89.16 381.55 89.16C403.27 89.16 412.51 77.52 412.51 65.04C412.51 45.48 399.91 42.24 380.59 37.44Z" fill="black"/>
           <path d="M435.67 5.88H426.07V26.28H417.07V34.68H426.07V72.48C426.07 84.96 432.31 88.2 440.47 88.2C442.99 88.2 445.51 87.96 447.67 87.48V79.08C439.51 79.68 435.67 78.48 435.67 71.52V34.68H447.67V26.28H435.67V5.88Z" fill="black"/>
@@ -164,7 +165,7 @@
           <rect width="658.27" height="89.16" fill="white"/>
           </clipPath>
           </defs>
-          </svg>
+          </svg> -->
         </a>
       </div>
     </div>  
@@ -187,11 +188,33 @@ export default {
   data() {
     return {
       domReady: false,
-      newsletter:'',
-      messageOk:''
+      nums:[
+        {
+          num: 147,
+          name: 'Municipio'
+        },
+        {
+          num: 911,
+          name: 'Policia'
+        },
+        {
+          num: 107,
+          name: 'Emergencias'
+        },
+        {
+          num: 100,
+          name: 'Bomberos'
+        },
+        {
+          num: 103,
+          name: 'Defensa civil'
+        }
+      ],
+      currentYear: 0
     }
   },
   mounted(){
+    this.currentYear = new Date().getFullYear()
   },
   methods: {
     async checkForm(e) {
@@ -214,32 +237,6 @@ export default {
         this.newsletter = ''
         this.messageOk = 'Gracias por registrarte en nuestro newsletter.'
       }
-    }
-  },
-  data() {
-    return {
-      nums:[
-        {
-          num: 147,
-          name: 'Municipio'
-        },
-        {
-          num: 911,
-          name: 'Policia'
-        },
-        {
-          num: 107,
-          name: 'Emergencias'
-        },
-        {
-          num: 100,
-          name: 'Bomberos'
-        },
-        {
-          num: 103,
-          name: 'Defensa civil'
-        }
-      ]
     }
   }
 }
@@ -268,7 +265,6 @@ export default {
       h3{
         font-size: 22px;
         line-height: 1.45;
-        margin-top: 20px;
       }
     }
     & .input{
@@ -392,6 +388,8 @@ export default {
     small{
       display: flex;
       align-items: center;
+      font-weight: 500;
+      font-size: 12px;
       svg{margin-right: 6px;}
     }
     .rrss{
@@ -430,6 +428,8 @@ export default {
     & .thrueno{
       display: flex;
       align-items: center;
+      gap:4px;
+      strong{font-size: 12px;font-weight: 500;}
       svg{width: 80px;margin-left: 6px;}
     }
   }
