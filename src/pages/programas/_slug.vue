@@ -31,7 +31,7 @@ import RichText from '../../components/RichText'
 import Agenda from '../../components/programas/AgendaProgramas'
 import fullCard from '../../components/programas/FullCardProgramas'
 import cardsMiddle from '../../components/programas/CardsMiddleProgramas'
-import cardsThird from '../../components/programas/CardsThirdProgramas'
+import cardThird from '../../components/programas/CardsThirdProgramas'
 import cuadricula from '../../components/programas/CuadriculaProgramas'
 import ListIcons from '../../components/programas/ListIconsProgramas'
 import FullMediaCard from '../../components/comunidades/FullMediaComunidad'
@@ -47,7 +47,7 @@ export default {
     RichText,
     Agenda,
     cardsMiddle,
-    cardsThird,
+    cardThird,
     fullCard,
     cuadricula,
     ListIcons,
