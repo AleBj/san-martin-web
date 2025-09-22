@@ -40,6 +40,7 @@ import cuadricula from '../../../components/programas/CuadriculaProgramas'
 import ListIcons from '../../../components/programas/ListIconsProgramas'
 import Preformatered from '../../../components/blocks/Preformatered'
 import ListSitios from '../../../components/sitios/ListSitios'
+import TableComponent from '../../../components/blocks/TableComponent'
 
 export default {
   name: 'Comunidad',
@@ -57,7 +58,8 @@ export default {
     cuadricula,
     ListIcons,
     Preformatered,
-    ListSitios
+    ListSitios,
+    TableComponent
   },
   mixins: [PageMixin],
   async fetch() {

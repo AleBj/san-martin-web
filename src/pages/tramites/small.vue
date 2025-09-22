@@ -48,6 +48,7 @@ import Footer from '../../components/Footer'
 import Title from '../../components/Title'
 import SingleImage from '../../components/SingleImage'
 import Logo from '../../components/Logo'
+import TableComponent from '../../components/blocks/TableComponent'
 
 export default {
   name: 'SmallProfiles',
@@ -56,7 +57,8 @@ export default {
     Footer,
     Title,
     SingleImage,
-    Logo
+    Logo,
+    TableComponent
   },
   async fetch() {
     let { ref } = this.$route.query

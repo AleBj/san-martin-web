@@ -75,6 +75,7 @@ import RichText from '../../components/RichText'
 import Button from '../../components/Button'
 import TitleStatics from '../../components/TitleStatics'
 import CardsTramitesRelated from '../../components/CardsTramitesRelated'
+import TableComponent from '../../components/blocks/TableComponent'
 
 export default {
   name: 'SingleTramites',
@@ -83,7 +84,8 @@ export default {
     RichText,
     TitleStatics,
     Button,
-    CardsTramitesRelated
+    CardsTramitesRelated,
+    TableComponent
   },
   async fetch() {
     const slug = this.$route.params.slug

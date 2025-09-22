@@ -31,6 +31,7 @@ import CardList from '../../components/comunidades/CardsListComunidad'
 import TextBlock from '../../components/comunidades/TextBlockComunidad'
 import Preformatered from '../../components/blocks/Preformatered'
 import ListSitios from '../../components/sitios/ListSitios'
+import TableComponent from '../../components/blocks/TableComponent'
 
 export default {
   name: 'Comunidades',
@@ -45,7 +46,8 @@ export default {
     CardList,
     TextBlock,
     Preformatered,
-    ListSitios
+    ListSitios,
+    TableComponent
   },
   async fetch() {
     const slug = this.$route.params.slug
