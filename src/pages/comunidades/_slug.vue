@@ -1,5 +1,6 @@
 <template>
 <div :style="cssProps">
+  
   <section :class="$style.heroComunidades" :style="`background-image:url(${bgImage}?fit=clip&w=1500)`">
     <div class="wrapper">
       <Title :text="comunidad.titulo" :size="`sec`" />
@@ -12,7 +13,7 @@
       <CardsComunidadHome v-for="(item, index) in cards" :items="item" :key="index" :color="(index == 0 || index == 3) ? colorPrimary : colorSecundary" :size="(index == 0) ? `big` : `small`" />
     </div>
     <div :class="[`wrapper`, $style.contentList]" v-if="lists">
-      <ListsComunidadHome v-for="(item, index) in lists" :items="item" :key="index" :color="colorPrimary" />
+      <ListsComunidadHome v-for="(item, index) in lists" :items="item" :key="index" :color="colorPrimary" :class="$style.list" />
     </div>
   </section>
 </div>
@@ -54,9 +55,13 @@ export default {
 
     let ids = res.data.cards_comunidades.map(e => e.listado_de_cards.id)
     this.cards = await this.$prismic.api.getByIDs(ids).then( r => r.results)
+    
 
     let idl = res.data.list_comunidades.map(e => e.lista_de_comunidades.id)
-    this.lists = await this.$prismic.api.getByIDs(idl).then( r => r.results)
+    console.log(idl.some(element => element === undefined))
+    if(!idl.some(element => element === undefined)){
+      this.lists = await this.$prismic.api.getByIDs(idl).then( r => r.results)
+    }
     
     //console.log(this.cards)
     if (res && res.data) {      
@@ -209,8 +214,11 @@ export default {
   }
   &List{
     display: flex;
-    justify-content: space-between;
+    gap:22px;
     flex-wrap: wrap;
+    .list a{
+      justify-content: flex-start !important;
+    }
     @media (max-width:800px) {
       flex-direction: column;
     }

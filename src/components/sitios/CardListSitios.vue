@@ -3,6 +3,9 @@
     <div :class="[$style.listCard, shadow && $style.shadowBox]">
     
         <div :class="[$style.listCardImage]" v-if="items.imagen_singlelist && Object.keys(this.items.imagen_singlelist).length > 0">
+            
+            <a v-if="items.link_externo_imagen.url" :class="$style.listCardImageLink" :href="items.link_externo_imagen.url" target="_blank"></a>
+            
             <Imagen :image="items.imagen_singlelist" />
         </div>
         <div :class="[$style.listCardCont]">
@@ -94,6 +97,14 @@ export default {
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+        &Link{
+            position: absolute;
+            top: 0;left: 0;
+            width: 100%;
+            height: 100%;
+            
+            z-index: 2;
         }
     }
     &:not(.shadowBox){
