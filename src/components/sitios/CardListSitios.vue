@@ -4,7 +4,7 @@
     
         <div :class="[$style.listCardImage]" v-if="items.imagen_singlelist && Object.keys(this.items.imagen_singlelist).length > 0">
             
-            <a v-if="items.link_externo_imagen.url" :class="$style.listCardImageLink" :href="items.link_externo_imagen.url" target="_blank"></a>
+            <a v-if="items.link_externo_imagen && items.link_externo_imagen.url" :class="$style.listCardImageLink" :href="items.link_externo_imagen.url" target="_blank"></a>
             
             <Imagen :image="items.imagen_singlelist" />
         </div>
