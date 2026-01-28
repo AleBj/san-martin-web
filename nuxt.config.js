@@ -155,7 +155,7 @@ export default {
     ["nuxt-sm"]
   ],
   'google-gtag':{
-    id: 'G-YJ07PG0WFJ', // 'AW-16873460754'
+    id: 'G-53LXLVYKXM', // 'AW-16873460754'
     config:{
       // this are the config options for `gtag
       // check out official docs: https://developers.google.com/analytics/devguides/collection/gtagjs/
