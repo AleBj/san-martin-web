@@ -2,6 +2,7 @@
 <div :style="cssProps">
   <section v-if="programa.header_sitios" :class="[$style.heroProgramas]" :style="`background-image:url(${bgImage}?fit=clip&w=1500)`">
     <div :class="[`wrapper`, programa.texto && $style.txtWhite, programa.alineacion && $style.centered]">
+       <h4>{{ programa.volanta }}</h4>
       <Title :text="programa.titulo" :size="`int`" />
       <RichText :text="programa.descripcion" />
       <a v-if="programa.link_boton && programa.link_boton.url" :href="programa.link_boton.url" :target="(programa.link_boton.target) ? programa.link_boton.target : `blank`" :class="[$style.boton]">{{$prismic.asText(programa.cta_boton)}}</a>
@@ -177,6 +178,7 @@ export default {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  h4{font-size: 12px;color:white;text-transform: uppercase;margin-bottom: 16px;}
   & > div{
     height: 100%;
     display: flex;

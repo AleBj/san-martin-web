@@ -10,16 +10,29 @@
   </section>
   <section :class="$style.content" id="mainCominidades">
     <div :class="[`wrapper`, $style.contentCards]" v-if="cards">
-      <CardsComunidadHome v-for="(item, index) in cards" :items="item" :key="index" :color="(index == 0 || index == 3) ? colorPrimary : colorSecundary" :size="(index == 0) ? `big` : `small`" />
+      <CardsComunidadHome v-for="(item, index) in cards" :items="item" :key="index" :color="(index == 0 || index == 3) ? colorPrimary : colorSecundary" :size="(item.tamano_card == '3 Módulos') ? `full` : (item.tamano_card == '2 Módulos') ? `big` : `small`" />
     </div>
     <div :class="[`wrapper`, $style.contentList]" v-if="lists">
       <ListsComunidadHome v-for="(item, index) in lists" :items="item" :key="index" :color="colorPrimary" :class="$style.list" />
     </div>
   </section>
+  <section :class="[$style.content, 'no-padding']">
+
+    <component
+      :is="slice.name"
+      v-for="(slice, sliceIndex) in slices"
+      :key="sliceIndex"
+      :data-slice-name="slice.name"
+      v-bind="slice.data"
+      :id="$prismic.asText(slice.data.idAncla)"
+    />
+
+  </section>
 </div>
 </template>
 
 <script>
+import PageMixin from '../../mixins/page'
 import Title from '../../components/Title'
 import RichText from '../../components/RichText'
 import TitleStatics from '../../components/TitleStatics'
@@ -32,6 +45,8 @@ import TextBlock from '../../components/comunidades/TextBlockComunidad'
 import Preformatered from '../../components/blocks/Preformatered'
 import ListSitios from '../../components/sitios/ListSitios'
 import TableComponent from '../../components/blocks/TableComponent'
+import cardThird from '../../components/programas/CardsThirdProgramas'
+import cuadricula from '../../components/programas/CuadriculaProgramas'
 
 export default {
   name: 'Comunidades',
@@ -47,17 +62,32 @@ export default {
     TextBlock,
     Preformatered,
     ListSitios,
-    TableComponent
+    TableComponent,
+    cardThird,
+    cuadricula
   },
+  mixins: [PageMixin],
   async fetch() {
     const slug = this.$route.params.slug
     //console.log(slug)
     this.slug = slug
     const res = await this.$prismic.api.getByUID('comunidades',slug)
 
+    const cardsData = res.data.cards_comunidades
+
     let ids = res.data.cards_comunidades.map(e => e.listado_de_cards.id)
-    this.cards = await this.$prismic.api.getByIDs(ids).then( r => r.results)
+    //this.cards = await this.$prismic.api.getByIDs(ids).then( r => r.results)
+    const results = await this.$prismic.api.getByIDs(ids).then(r => r.results)
     
+    this.cards = ids.map(id => {
+      const card = results.find(r => r.id === id)
+      const tamano = cardsData.find(e => e.listado_de_cards.id === id).tamano_card
+      return { ...card, tamano_card: tamano }
+    })
+
+    const data = res.data
+    this.slices = data.body.map(this.prepareData)
+    console.log(this.slices)
 
     let idl = res.data.list_comunidades.map(e => e.lista_de_comunidades.id)
     console.log(idl.some(element => element === undefined))
@@ -65,7 +95,6 @@ export default {
       this.lists = await this.$prismic.api.getByIDs(idl).then( r => r.results)
     }
     
-    //console.log(this.cards)
     if (res && res.data) {      
       this.comunidad = res.data
       this.colorPrimary = this.comunidad.color_primario
@@ -82,6 +111,7 @@ export default {
       meta: {},
       dataReady: false,
       comunidad: [],
+      slices:[],
       cards:[],
       lists:[],
       colorPrimary:'',
@@ -207,7 +237,7 @@ export default {
   }
   &Cards{
     display: flex;
-    justify-content: space-between;
+    gap:22px;
     flex-wrap: wrap;
     margin-bottom: 60px;
     @media (max-width:800px) {
@@ -225,5 +255,11 @@ export default {
       flex-direction: column;
     }
   }
+}
+</style>
+
+<style lang="scss">
+.no-padding{
+  padding-top: 0 !important;
 }
 </style>

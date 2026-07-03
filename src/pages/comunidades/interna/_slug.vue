@@ -1,7 +1,7 @@
 <template>
 <div :style="cssProps">
-  <section :class="$style.heroComunidades">
-    <div class="wrapper">
+  <section :class="$style.heroComunidades" :style="`background-image: url(${comunidad.background_hero && comunidad.background_hero.url});`">
+    <div :class="['wrapper', comunidad.texto_blanco_hero && $style.txtWhite]">
       <h4 v-if="madre.data">{{ $prismic.asText(madre.data.titulo) }}</h4>
       <div :style="{color:colorPrimary}">
         <Title :text="comunidad.titulo" :size="`int`" />
@@ -66,7 +66,6 @@ export default {
     const slug = this.$route.params.slug
     this.slug = slug
     const res = await this.$prismic.api.getByUID('interna_comunidad',slug)
-
     this.madre = await this.$prismic.api.getByID(res.data.comunidad.id)
 
     if (res && res.data) {       
@@ -165,21 +164,25 @@ export default {
 <style lang="scss" module>
 .heroComunidades{
   background-color: #fff;
+  background-size: cover;
   height: 620px;
   & > div{
     height: 100%;
     display: flex;
     flex-direction: column;
-   justify-content: center;
-   h4{font-size: 12px;text-transform: uppercase;margin-bottom: 16px;}
-   h2{max-width: 540px;}
-   p{
-    margin: 30px 0 0;
-    line-height: 1.6;
-    font-size: 18px;
-    color: #5E606A;
-    max-width: 540px;
-   }
+    justify-content: center;
+    h4{font-size: 12px;text-transform: uppercase;margin-bottom: 16px;}
+    h2{max-width: 540px;}
+    p{
+      margin: 30px 0 0;
+      line-height: 1.6;
+      font-size: 18px;
+      color: #5E606A;
+      max-width: 540px;
+    }
+    &.txtWhite{
+      h4, h2, p{color:#fff}
+    }
   }
 }
 [data-card-color="Primario"]{

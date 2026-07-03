@@ -1,5 +1,13 @@
 <template>
   <div :class="[$style.tramites]">
+
+    <div class="marquee" v-if="marquee && marquee != ''">
+      <Marquee 
+        :text="marquee" 
+        :speed="20"
+      />
+    </div>
+
    <div :class="[$style.hero]">
      <div :class="[$style.copy]">
        <TitleStatics :text="`Trámites`" :size="`hero`" />
@@ -66,6 +74,28 @@
        </div>-->
      </div>
    </div>
+   <div :class="['wrapper', $style.banner]" v-if="bannerImage && bannerImage.url || bannerVideo && bannerVideo.url" id="bannerTramites"> 
+      <div :class="$style.banner_close" @click="closeBanner">
+        <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 6L18 18" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+          <path d="M18 6L6 18" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      
+      <a v-if="bannerLink.link_type == 'Web' || bannerLink.link_type == 'Media'" :href="(bannerLink.url) ? bannerLink.url : `/`" target="_blank" :class="$style.banner_link"></a>
+      <nuxt-link v-else-if="bannerLink.link_type !== 'Any'" :to="(bannerLink.type == 'sitio') ? `/${bannerLink.uid}` :  (bannerLink.type == 'interna_comunidad') ?`/comunidades/interna/${bannerLink.uid}` :`/${bannerLink.type}/${bannerLink.uid}`" :class="$style.banner_link"></nuxt-link>
+
+      <div v-if="bannerVideo && bannerVideo.url" :class="$style.bannerVideo">
+        <video autoplay muted loop playsinline>
+          <source :src="bannerVideo.url" type="video/mp4">
+        </video>
+      </div>
+      <picture v-else :class="$style.bannerImage">
+        <source :srcset="bannerImageMobile.url" media="(max-width: 768px)">
+        <source :srcset="bannerImage.url">
+        <prismic-image :field="bannerImage"/>
+      </picture>
+   </div>
    <div :class="[`wrapper`]">
      <TitleStatics :text="`Trámites más utilizados`" :size="`h3`" />
      <div :class="$style.contentTra">
@@ -77,8 +107,14 @@
 
 <script>
 
+import { gsap } from 'gsap'
+import Marquee from '../../components/Marquee.vue'
+
 export default {
   name: 'Profiles',
+  components:{
+    Marquee
+  },
   head: {
     title: "Municipalidad de San Martin :: Trámites",
     meta: [
@@ -144,12 +180,22 @@ export default {
       return response.results
     });
     this.tramitesDestacados = res[0].data.listado
+    this.bannerVideo = res[0].data.banner_tramites_video
+    this.bannerImage = res[0].data.banner_tramites_image
+    this.bannerImageMobile = res[0].data.banner_tramites_image_mobile
+    this.bannerLink = res[0].data.banner_tramites_link
+    this.marquee = res[0].data.marquesina
     this.dataReady = true
   },
   data() {
     return {
       tramites: [],
       tramitesDestacados: [],
+      bannerVideo: {},
+      bannerImage: {},
+      bannerImageMobile: {},
+      bannerLink : {},
+      marquee: '',
       filtraTramites:[],
       categories: [],
       subCat:[],
@@ -213,6 +259,13 @@ export default {
     },
     OrdenarPorNombre(x, y) {
         return ((x.slugs[0] == y.slugs[0]) ? 0 : ((x.slugs[0] > y.slugs[0]) ? 1 : -1));
+    },
+    closeBanner(){
+      const banner = document.getElementById('bannerTramites')
+    
+      gsap.to(banner, {opacity:0, duration:0.5, height: 0, onComplete:function(){
+        banner.style.display = 'none'
+      }})
     }
   },
   head() {
@@ -274,6 +327,68 @@ export default {
       padding: 20px 0px; 
       
     }
+  }
+  .banner{
+    position: relative;
+    margin-bottom: 40px;
+    overflow: hidden;
+    &_close{
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      z-index: 2;
+      display: flex;
+      border-radius:100%;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      padding: 5px;
+      background-color: white;
+      svg{display: block;width: 100%;}
+    }
+    &_link{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+     .bannerVideo, .bannerImage{
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      overflow: hidden;
+      border-radius: 20px;
+    }
+    .bannerVideo, .bannerImage{
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      overflow: hidden;
+      border-radius: 20px;
+      display: block;
+      img{
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+    }
+    .bannerVideo{
+      video{
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+    }
+  }
+  @media (max-width:800px) {
+    display: flex;
+    flex-direction: column;
+    .banner{order: -1;margin-top:50px;margin-bottom: 0px;}
   }
 }
 </style>

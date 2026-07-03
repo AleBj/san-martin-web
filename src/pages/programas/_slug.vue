@@ -2,6 +2,7 @@
 <div :style="cssProps">
   <section :class="[$style.heroProgramas]" :style="`background-image:url(${bgImage}?fit=clip&w=1500)`">
     <div :class="[`wrapper`, programa.texto && $style.txtWhite, programa.alineacion && $style.centered]">
+      <h4>{{ programa.volanta }}</h4>
       <Title :text="programa.titulo" :size="`int`" />
       <RichText :text="programa.descripcion" />
       <a href="" v-if="!programa.cta_boton">{{programa.cta_boton}}</a>
@@ -69,9 +70,8 @@ export default {
 
     const data = res.data
     this.slices = data.body.map(this.prepareData)
-    //console.log(this.slices)
 
-     //console.log(this.cards)
+     console.log(this.slices)
     if (res && res.data) {      
       this.colorPrimary = this.programa.color_primario
       this.colorSecundary = this.programa.color_secundario
@@ -173,6 +173,7 @@ export default {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  h4{font-size: 12px;color:white;text-transform: uppercase;margin-bottom: 16px;}
   & > div{
     height: 100%;
     display: flex;

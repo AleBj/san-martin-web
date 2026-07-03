@@ -47,9 +47,15 @@ export default {
   background-position: center;
   height: 480px;
   width: calc(33.33% - 15px);
-  margin:15px 0;
+  //margin:15px 0;
+  &.full{
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+  }
   &.big{
-    width: calc(66.66% - 15px);
+    width: calc(66.66% - 7px);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: right;
