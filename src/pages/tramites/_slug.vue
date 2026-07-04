@@ -50,7 +50,7 @@
         <RichText :text="tramite.descripcion" />
         <div v-if="isProv == true" :class="$style.checkTramite">
           <input type="checkbox" v-model="checkTramite" name="checktramite">
-          <label for="checktramite"> He descargado y leído el <a href="https://sitiosale.cdn.prismic.io/sitiosale/a1GP09TKmEeSuZSv_PolíticaAntisoborno-1.pdf" target="_blank"> Código de Ética </a> y Conducta y las <a href="https://sitiosale.cdn.prismic.io/sitiosale/aDneridWJ-7kSv17_Pol%C3%ADticaAntisoborno-T02.pdf" target="_blank"> Políticas Antisoborno </a></label>
+          <label for="checktramite"> He descargado y leído el <a href="https://sitiosale.cdn.prismic.io/sitiosale/aEBoOLh8WN-LVmnl_C%C3%B3digode%C3%A9ticayconducta.pdf" target="_blank"> Código de Ética </a> y Conducta y las <a href="https://sitiosale.cdn.prismic.io/sitiosale/a1GP09TKmEeSuZSv_PolíticaAntisoborno-1.pdf" target="_blank"> Políticas Antisoborno </a></label>
           <div v-if="checkTramite == false" :class="$style.disabled"></div>
         </div>
         <Button :cta="`Iniciar Tramite`" 
